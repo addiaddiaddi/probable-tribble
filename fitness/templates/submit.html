@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="card border-primary card-body d-flex flex-column justify-content-center align-items-center mx-auto mt-5" style="width: 50%; margin: auto;">
+        <div class="form-group">
+          <label for="entry">Entry</label>
+          <!-- <input name="team" type="text" class="form-control" id="team" placeholder="Team"> -->
+          <select name="entry" type="text" class="form-control" id="entry">
+            <option value="0">---------</option>
+
+            {% for c in categories %}
+            <option value="{{ c.id }}">{{ c }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+  </form>
+
+{% if error %}
+    <div class="alert alert-danger alert-dismissable show fade text-center mt-3" style="width: 30%; margin: auto;" role="alert">
+      {{ error }}
+    </div>
+{% endif %}
+{% if success %}
+    <div class="alert alert-success alert-dismissable show fade text-center mt-3" style="width: 30%; margin: auto;" role="alert">
+      {{ success }}
+    </div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  {% if success %}
+      <div class="alert alert-success alert-dismissable show fade text-center mt-3" style="width: 30%; margin: auto;" role="alert">
+        {{ success }}
+      </div>
+  {% endif %}
+  {% if error %}
+      <div class="alert alert-danger alert-dismissable show fade text-center mt-3" style="width: 30%; margin: auto;" role="alert">
+        {{ error }}
+      </div>
+  {% endif %}
+
+
+  <div style="margin-top:30px;"><h1 style="text-align: center;">{{name}}</h1></div>
+
+  <table class="table table-bordered" style="width:50%;margin:auto;margin-top:30px">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Activity</th>
+        <th scope="col">Points</th>
+        <th scope="col">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for e in entries%}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{e.category.name}}</a> </td>
+          <td>{{e.category.points}}</td>
+          <td>{{e.date}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+<style>
+  a:focus {
+    outline: none !important;
+  }
+</style>

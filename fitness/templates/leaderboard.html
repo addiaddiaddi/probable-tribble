@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  {% if success %}
+      <div class="alert alert-success alert-dismissable show fade text-center mt-3" style="width: 30%; margin: auto;" role="alert">
+        {{ success }}
+      </div>
+  {% endif %}
+  {% if error %}
+      <div class="alert alert-danger alert-dismissable show fade text-center mt-3" style="width: 30%; margin: auto;" role="alert">
+        {{ error }}
+      </div>
+  {% endif %}
+
+  <table class="table table-bordered" style="width:50%;margin:auto;margin-top:30px;">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Team Name</th>
+        <th scope="col">Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in teams%}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{t.name}}</td>
+          <td>{{t.points}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <table class="table table-bordered" style="width:50%;margin:auto;margin-top:30px">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Points</th>
+        <th scope="col">Team</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in players%}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td><a href="profile/{{p.id}}" style="color:#080808;">{{p.firstname}} {{p.lastname}}</a> </td>
+          <td>{{p.points}}</td>
+          <td>{{p.team}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+<style>
+  a:focus {
+    outline: none !important;
+  }
+</style>
